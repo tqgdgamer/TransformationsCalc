@@ -1,3 +1,5 @@
+from ast import literal_eval
+
 x_list_str = []
 y_list_str = []
 
@@ -15,22 +17,22 @@ while rep_point < point_count:
 
     x_list_str.append(x)
 
-    y_list_str.append(y)    
+    y_list_str.append(y)
 
     rep_point = rep_point + 1
 
 # Evaluate list
-x_list = [eval(i) for i in x_list_str]
+x_list = [literal_eval(i) for i in x_list_str]
 
-y_list = [eval(i) for i in y_list_str]
+y_list = [literal_eval(i) for i in y_list_str]
 
 # Shifts x "h" units to the left/right
-h = (input("Horizontal Shift: "))
-h = eval(h)
+h = input("Horizontal Shift: ")
+h = literal_eval(h)
 
 # Shifts y "k" units up/down
-k = (input("Vertical Shift: "))
-k = eval(k)
+k = input("Vertical Shift: ")
+k = literal_eval(k)
 
 # Apply translation
 
