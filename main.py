@@ -1,3 +1,4 @@
+'''literal_eval from ast module to evalulate str'''
 from ast import literal_eval
 
 x_list_str = []
@@ -5,11 +6,11 @@ y_list_str = []
 
 point_count = int(input("How many points do you want?\n"))
 
-rep_point = 0
+REP_POINT = 0
 
 # Loop for how many points
 
-while rep_point < point_count:
+while REP_POINT < point_count:
 
     point = input("Give a point in the format: (x, y)\n")
     point = point.strip("()")
@@ -19,7 +20,7 @@ while rep_point < point_count:
 
     y_list_str.append(y)
 
-    rep_point = rep_point + 1
+    REP_POINT = REP_POINT + 1
 
 # Evaluate list
 x_list = [literal_eval(i) for i in x_list_str]
@@ -47,10 +48,10 @@ ordered_pair =  [(x, y) for x,y in zip(x_list_h, y_list_k)]
 
 print("Your points before the translation are:")
 
-for i in range(len(og_ordered_pair)):
-    print(og_ordered_pair[i])
+for i, o_o_p in enumerate(og_ordered_pair):
+    print(o_o_p)
 
 print("Your points now are:")
 
-for i in range(len(ordered_pair)):
-    print(ordered_pair[i])
+for i, o_p in enumerate(ordered_pair):
+    print(o_p)
