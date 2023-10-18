@@ -1,4 +1,5 @@
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/) 
+
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/tqgdgamer/TransformationsCalc/blob/main/LICENSE)
 
 ## Key Features
@@ -9,7 +10,7 @@
 | Multiple Points | ✅ |
 | **Transformations** | - |
 | Translation | ✅ |
-| Reflection | ❌ |
+| Reflection | 🛠️ |
 | Dilation | ❌ |
 | Rotation | ❌ |
 
