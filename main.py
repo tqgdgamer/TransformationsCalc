@@ -3,13 +3,13 @@ y_list_str = []
 
 # Check if user input is valid
 
-def validate_transformation(user_input, valid_transformations):
+def validate_transformation(user_input, valid_input):
 
-    valid_transformations = ["1", "2","translation", "reflection"]
+    valid_input = ["1", "2","translation", "reflection"]
 
-    while user_input not in valid_transformations:
+    while user_input not in valid_input:
         print("\033[1mYour input is invalid. Please try again.\033[0m")
-        transformation_input = input(
+        user_input = input(
 '''
 What kind of transformation do you want to perform?
 1. Translation
@@ -20,10 +20,9 @@ What kind of transformation do you want to perform?
 '''
         ).lower()
 
-        validate_transformation(transformation_input, valid_transformations)
+        validate_transformation(user_input, valid_input)
 
-        return transformation_input
-        break
+        return user_input
 
 transformation_input = input(
 '''
@@ -69,8 +68,8 @@ x_list = [eval(i) for i in x_list_str]
 y_list = [eval(i) for i in y_list_str]
 
 # Translation
-x_list_h = None
-y_list_k = None 
+X_LIST_H = None
+Y_LIST_H = None
 
 
 if "translation" or "1" in transformation_input:
@@ -85,9 +84,9 @@ if "translation" or "1" in transformation_input:
 
     # Apply translation
 
-    x_list_h = [round(x + h, 3) for x in x_list]
+    X_LIST_H = [round(x + h, 3) for x in x_list]
 
-    y_list_k = [round(y + k, 3) for y in y_list]
+    Y_LIST_K = [round(y + k, 3) for y in y_list]
 
 # Reflection
 
@@ -95,7 +94,7 @@ if "translation" or "1" in transformation_input:
 # Make ordered pairs
 
 og_ordered_pair =  [(x, y) for x,y in zip(x_list, y_list)]
-ordered_pair =  [(x, y) for x,y in zip(x_list_h, y_list_k)]
+ordered_pair =  [(x, y) for x,y in zip(X_LIST_H, Y_LIST_K)]
 
 print("Your points before the translation are:")
 
