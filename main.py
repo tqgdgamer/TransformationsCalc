@@ -3,6 +3,7 @@ import re
 x_list_str = []
 y_list_str = []
 
+
 # Check if reflection input is valid
 
 def validate_reflection(user_input, valid_input):
@@ -16,12 +17,10 @@ def validate_reflection(user_input, valid_input):
     valid_input = ["1", "2","x-axis", "y-axis"]
 
     if matchy:
-        y_reflect = eval(matchy.group(1))
-        return y_reflect
-    
+        return user_input
+
     if matchx:
-        x_reflect = eval(matchx.group(1))
-        return x_reflect
+        return user_input
 
     if not matchy and not matchx:
 
@@ -38,9 +37,14 @@ What line do you want to reflect your point over?
 """
             ).lower()
 
+            if " " in user_input:
+                user_input = user_input.replace(" ", "")
+
             validate_reflection(user_input, valid_input)
 
             return user_input
+
+    return user_input
 
 # Check if user input is valid
 
@@ -65,6 +69,7 @@ What kind of transformation do you want to perform?
 
         return user_input
 
+
 transformation_input = input(
 '''
 What kind of transformation do you want to perform?
@@ -78,7 +83,8 @@ What kind of transformation do you want to perform?
 
 valid_transformations = ["1", "2","translation", "reflection"]
 
-validate_transformation(transformation_input, valid_transformations)
+transformation_input = validate_transformation(transformation_input, valid_transformations)
+
 
 # Amount of points
 
@@ -103,16 +109,18 @@ while REP_POINT < point_count:
 
     REP_POINT = REP_POINT + 1
 
+
 # Evaluate list
 x_list = [eval(i) for i in x_list_str]
 
 y_list = [eval(i) for i in y_list_str]
 
+
 # Translation
-X_LIST_H = None
-Y_LIST_K = None
+X_LIST_H = []
+Y_LIST_K = []
+
 TRANSLATE = False
-REFLECT = False
 
 if "translation" in transformation_input or "1" in transformation_input:
 
@@ -132,9 +140,20 @@ if "translation" in transformation_input or "1" in transformation_input:
 
     Y_LIST_K = [round(y + k, 3) for y in y_list]
 
+
 # Reflection
+X_LIST_REFLECT = []
+Y_LIST_REFLECT = []
+
+REFLECT = False
 
 if "reflection" in transformation_input or "2" in transformation_input:
+
+    patterny = r"y=([-]?(\d+|\d+\/\d+))"
+    patternx = r"x=([-]?(\d+|\d+\/\d+))"
+
+    X_LIST_REFLECT = [x for x in x_list]
+    Y_LIST_REFLECT = [y for y in y_list]
 
     REFLECT = True
     
@@ -152,17 +171,34 @@ What line do you want to reflect your point over?
     if " " in reflection_line_input:
         reflection_line_input = reflection_line_input.replace(" ", "")
 
+    matchy = re.match(patterny, reflection_line_input)
+    matchx = re.match(patternx, reflection_line_input)
+
     valid_input = ["1", "2","x-axis", "y-axis"]
 
-    reflection_line = validate_reflection(reflection_line_input, valid_input)
+    reflection_line_input = validate_reflection(reflection_line_input, valid_input)
 
-    print(reflection_line)
+    if "1" in reflection_line_input or "x-axis" in reflection_line_input:
+        
+        X_LIST_REFLECT = [round(x, 3) for x in x_list]
+        Y_LIST_REFLECT = [round(-y, 3) for y in y_list]
+
+    if "2" in reflection_line_input or "y-axis" in reflection_line_input:
+        
+        X_LIST_REFLECT = [round(-x, 3) for x in x_list]
+        Y_LIST_REFLECT = [round(y, 3) for y in y_list]
+
+    if matchy:
+        REFLECT = False
+
+    if matchx:
+        REFLECT = False
 
 # Make ordered pairs
 
 og_ordered_pair =  [(x, y) for x,y in zip(x_list, y_list)]
 
-print("Your points before the translation are:")
+print("Your points before the transformation are:")
 
 for i, o_o_p in enumerate(og_ordered_pair):
     print(o_o_p)
@@ -178,6 +214,9 @@ if TRANSLATE is True:
 
 if REFLECT is True:
 
+    reflected_ordered_pair =  [(x, y) for x,y in zip(X_LIST_REFLECT, Y_LIST_REFLECT)]
+
     print("Your points now are:")
 
-    print("Work In Progress")
+    for i, o_p in enumerate(reflected_ordered_pair):
+        print(o_p)
