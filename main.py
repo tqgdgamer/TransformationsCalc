@@ -68,6 +68,8 @@ What kind of transformation do you want to perform?
         validate_transformation(user_input, valid_input)
 
         return user_input
+    
+    return user_input
 
 
 transformation_input = input(
@@ -189,10 +191,13 @@ What line do you want to reflect your point over?
         Y_LIST_REFLECT = [round(y, 3) for y in y_list]
 
     if matchy:
-        REFLECT = False
+        
+        pass
+
 
     if matchx:
-        REFLECT = False
+
+        pass
 
 # Make ordered pairs
 
