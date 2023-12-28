@@ -191,13 +191,15 @@ What line do you want to reflect your point over?
         Y_LIST_REFLECT = [round(y, 3) for y in y_list]
 
     if matchy:
-        
-        pass
+
+        X_LIST_REFLECT = [round(x, 3) for x in x_list]
+        Y_LIST_REFLECT = [round(-y + ( 2 * float(matchy.group(1))), 3) for y in y_list]
 
 
     if matchx:
 
-        pass
+        X_LIST_REFLECT = [round(-x + ( 2 * float(matchy.group(1))), 3) for x in x_list]
+        Y_LIST_REFLECT = [round(y, 3) for y in x_list]
 
 # Make ordered pairs
 
