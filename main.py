@@ -24,7 +24,7 @@ def validate_reflection(user_input, valid_input):
 
     if not matchy and not matchx:
 
-        while user_input not in valid_input:
+        while user_input not in valid_input and not matchy and not matchx:
             print("\033[1mYour input is invalid. Please try again.\033[0m")
             user_input = input(
 """
@@ -39,8 +39,6 @@ What line do you want to reflect your point over?
 
             if " " in user_input:
                 user_input = user_input.replace(" ", "")
-
-            validate_reflection(user_input, valid_input)
 
             return user_input
 
@@ -64,6 +62,9 @@ What kind of transformation do you want to perform?
 
 '''
         ).lower()
+
+        if " " in user_input:
+                user_input = user_input.replace(" ", "")
 
         validate_transformation(user_input, valid_input)
 
@@ -173,12 +174,14 @@ What line do you want to reflect your point over?
     if " " in reflection_line_input:
         reflection_line_input = reflection_line_input.replace(" ", "")
 
-    matchy = re.match(patterny, reflection_line_input)
-    matchx = re.match(patternx, reflection_line_input)
-
     valid_input = ["1", "2","x-axis", "y-axis"]
 
     reflection_line_input = validate_reflection(reflection_line_input, valid_input)
+
+    reflection_line_input = validate_reflection(reflection_line_input, valid_input)
+
+    matchy = re.match(patterny, reflection_line_input)
+    matchx = re.match(patternx, reflection_line_input)
 
     if "1" in reflection_line_input or "x-axis" in reflection_line_input:
         
@@ -194,7 +197,6 @@ What line do you want to reflect your point over?
 
         X_LIST_REFLECT = [round(x, 3) for x in x_list]
         Y_LIST_REFLECT = [round(-y + ( 2 * float(matchy.group(1))), 3) for y in y_list]
-
 
     if matchx:
 
