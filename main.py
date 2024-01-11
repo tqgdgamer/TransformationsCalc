@@ -40,7 +40,14 @@ What line do you want to reflect your point over?
             if " " in user_input:
                 user_input = user_input.replace(" ", "")
 
-            return user_input
+            matchy = re.match(patterny, user_input)
+            matchx = re.match(patternx, user_input)
+
+            if matchy:
+                return user_input
+
+            if matchx:
+                return user_input
 
     return user_input
 
@@ -152,9 +159,6 @@ REFLECT = False
 
 if "reflection" in transformation_input or "2" in transformation_input:
 
-    patterny = r"y=([-]?(\d+|\d+\/\d+))"
-    patternx = r"x=([-]?(\d+|\d+\/\d+))"
-
     X_LIST_REFLECT = [x for x in x_list]
     Y_LIST_REFLECT = [y for y in y_list]
 
@@ -180,8 +184,8 @@ What line do you want to reflect your point over?
 
     reflection_line_input = validate_reflection(reflection_line_input, valid_input)
 
-    matchy = re.match(patterny, reflection_line_input)
-    matchx = re.match(patternx, reflection_line_input)
+    matchy = re.match(r"y=([-]?(\d+|\d+\/\d+))", reflection_line_input)
+    matchx = re.match(r"x=([-]?(\d+|\d+\/\d+))", reflection_line_input)
 
     if "1" in reflection_line_input or "x-axis" in reflection_line_input:
         
