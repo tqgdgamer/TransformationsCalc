@@ -202,8 +202,6 @@ What line do you want to reflect your point over?
         X_LIST_REFLECT = [round(x, 3) for x in x_list]
         Y_LIST_REFLECT = [round(-y + ( 2 * eval(matchy.group(1))), 3) for y in y_list]
 
-        print(matchy.group())
-
     if matchx:
 
         X_LIST_REFLECT = [round(-x + ( 2 * eval(matchy.group(1))), 3) for x in x_list]
