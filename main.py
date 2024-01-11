@@ -8,8 +8,8 @@ y_list_str = []
 
 def validate_reflection(user_input, valid_input):
 
-    patterny = r"y=([-]?(\d+|\d+\/\d+))"
-    patternx = r"x=([-]?(\d+|\d+\/\d+))"
+    patterny = r"y=([-]?(\d+|\d+\/\d+))$"
+    patternx = r"x=([-]?(\d+|\d+\/\d+))$"
 
     matchy = re.match(patterny, user_input)
     matchx = re.match(patternx, user_input)
@@ -184,8 +184,8 @@ What line do you want to reflect your point over?
 
     reflection_line_input = validate_reflection(reflection_line_input, valid_input)
 
-    matchy = re.match(r"y=([-]?(\d+|\d+\/\d+))", reflection_line_input)
-    matchx = re.match(r"x=([-]?(\d+|\d+\/\d+))", reflection_line_input)
+    matchy = re.match(r"y=([-]?(\d+|\d+\/\d+))$", reflection_line_input)
+    matchx = re.match(r"x=([-]?(\d+|\d+\/\d+))$", reflection_line_input)
 
     if "1" in reflection_line_input or "x-axis" in reflection_line_input:
         
@@ -200,11 +200,13 @@ What line do you want to reflect your point over?
     if matchy:
 
         X_LIST_REFLECT = [round(x, 3) for x in x_list]
-        Y_LIST_REFLECT = [round(-y + ( 2 * float(matchy.group(1))), 3) for y in y_list]
+        Y_LIST_REFLECT = [round(-y + ( 2 * eval(matchy.group(1))), 3) for y in y_list]
+
+        print(matchy.group())
 
     if matchx:
 
-        X_LIST_REFLECT = [round(-x + ( 2 * float(matchy.group(1))), 3) for x in x_list]
+        X_LIST_REFLECT = [round(-x + ( 2 * eval(matchy.group(1))), 3) for x in x_list]
         Y_LIST_REFLECT = [round(y, 3) for y in x_list]
 
 # Make ordered pairs
