@@ -4,7 +4,7 @@ x_list_str = []
 y_list_str = []
 
 
-# Check if reflection input is valid
+# Validate Reflection Input
 
 def validate_reflection(user_input, valid_input):
 
@@ -51,11 +51,37 @@ What line do you want to reflect your point over?
 
     return user_input
 
+# Validate Dilation Input
+
+def validate_dilation(user_input, valid_input):
+
+    valid_input = ["1", "2"]
+
+    while user_input not in valid_input:
+        print("\033[1mYour input is invalid. Please try again.\033[0m")
+        user_input = input(
+'''
+How do you want to dilate your point?
+1. In respect to the origin
+2. In respect to (x, y)
+
+'''
+        ).lower()
+
+        if " " in user_input:
+                user_input = user_input.replace(" ", "")
+
+        validate_transformation(user_input, valid_input)
+
+        return user_input
+    
+    return user_input
+
 # Check if user input is valid
 
 def validate_transformation(user_input, valid_input):
 
-    valid_input = ["1", "2","translation", "reflection"]
+    valid_input = ["1", "2", "3","translation", "reflection", "dilation"]
 
     while user_input not in valid_input:
         print("\033[1mYour input is invalid. Please try again.\033[0m")
@@ -64,7 +90,7 @@ def validate_transformation(user_input, valid_input):
 What kind of transformation do you want to perform?
 1. Translation
 2. Reflection
-3. W.I.P.
+3. Dilation
 4. W.I.P.
 
 '''
@@ -85,13 +111,13 @@ transformation_input = input(
 What kind of transformation do you want to perform?
 1. Translation
 2. Reflection
-3. W.I.P.
+3. Dilation
 4. W.I.P.
 
 '''
 ).lower()
 
-valid_transformations = ["1", "2","translation", "reflection"]
+valid_transformations = ["1", "2", "3", "translation", "reflection", "dilation"]
 
 transformation_input = validate_transformation(transformation_input, valid_transformations)
 
@@ -171,7 +197,7 @@ What line do you want to reflect your point over?
 2. y-axis
 3. y = ___
 4. x = ___
-5. y = mx + b
+5. y = mx + b [WIP]
 """
     ).lower()
 
@@ -207,6 +233,41 @@ What line do you want to reflect your point over?
         X_LIST_REFLECT = [round(-x + ( 2 * eval(matchy.group(1))), 3) for x in x_list]
         Y_LIST_REFLECT = [round(y, 3) for y in x_list]
 
+# Dilations
+X_LIST_DILATE = []
+Y_LIST_DILATE = []
+
+DILATE = False
+
+if "dilation" in transformation_input or "3" in transformation_input:
+
+    X_LIST_DILATE = [x for x in x_list]
+    Y_LIST_DILATE = [y for y in y_list]
+
+    DILATE = True
+
+    dilation_input = input(
+"""
+How do you want to dilate your point?
+1. In respect to the origin
+2. In respect to (x, y) [WIP]
+
+"""
+    ).lower()
+
+    valid_input = ["1", "2"]
+
+    if "1" == dilation_input:
+        scale_factor = input(
+"""
+What scale factor do you want to dilate your points with?\n
+"""
+        )
+
+        X_LIST_DILATE = [x * eval(scale_factor) for x in x_list]
+        Y_LIST_DILATE = [y * eval(scale_factor) for y in y_list]
+
+
 # Make ordered pairs
 
 og_ordered_pair =  [(x, y) for x,y in zip(x_list, y_list)]
@@ -232,4 +293,13 @@ if REFLECT is True:
     print("Your points now are:")
 
     for i, o_p in enumerate(reflected_ordered_pair):
+        print(o_p)
+
+if DILATE is True:
+    
+    dilated_ordered_pair =  [(x, y) for x,y in zip(X_LIST_DILATE, Y_LIST_DILATE)]
+
+    print("Your points now are:")
+
+    for i, o_p in enumerate(dilated_ordered_pair):
         print(o_p)
