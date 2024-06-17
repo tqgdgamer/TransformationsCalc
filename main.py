@@ -250,7 +250,7 @@ if "dilation" in transformation_input or "3" in transformation_input:
 """
 How do you want to dilate your point?
 1. In respect to the origin
-2. In respect to (x, y) [WIP]
+2. In respect to (x, y)
 
 """
     ).lower()
@@ -266,6 +266,26 @@ What scale factor do you want to dilate your points with?\n
 
         X_LIST_DILATE = [x * eval(scale_factor) for x in x_list]
         Y_LIST_DILATE = [y * eval(scale_factor) for y in y_list]
+
+    if "2" == dilation_input:
+        
+        scale_factor = input(
+"""
+What scale factor do you want to dilate your points with?\n
+"""
+        )
+
+        respective_point = input(
+"""
+Where do you want to dilate your point in respect from?\n
+"""
+        )
+
+        respective_point = respective_point.strip("()")
+        h, k = respective_point.split(",")
+
+        X_LIST_DILATE = [(eval(scale_factor) * (x-eval(h)) + eval(h)) for x in x_list]
+        Y_LIST_DILATE = [(eval(scale_factor) * (y-eval(k)) + eval(k)) for y in y_list]
 
 
 # Make ordered pairs

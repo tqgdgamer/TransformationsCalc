@@ -11,7 +11,7 @@
 | **Transformations** | - |
 | Translation | ✅ |
 | Reflection | 🛠️ |
-| Dilation | 🛠️ |
+| Dilation | ✅ |
 | Rotation | ❌ |
 
 ## Installation
