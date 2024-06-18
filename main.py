@@ -1,4 +1,5 @@
 import re
+import math
 
 x_list_str = []
 y_list_str = []
@@ -81,7 +82,7 @@ How do you want to dilate your point?
 
 def validate_transformation(user_input, valid_input):
 
-    valid_input = ["1", "2", "3","translation", "reflection", "dilation"]
+    valid_input = ["1", "2", "3", "4","translation", "reflection", "dilation", "rotation"]
 
     while user_input not in valid_input:
         print("\033[1mYour input is invalid. Please try again.\033[0m")
@@ -91,7 +92,7 @@ What kind of transformation do you want to perform?
 1. Translation
 2. Reflection
 3. Dilation
-4. W.I.P.
+4. Rotation
 
 '''
         ).lower()
@@ -112,12 +113,12 @@ What kind of transformation do you want to perform?
 1. Translation
 2. Reflection
 3. Dilation
-4. W.I.P.
+4. Rotation
 
 '''
 ).lower()
 
-valid_transformations = ["1", "2", "3", "translation", "reflection", "dilation"]
+valid_transformations = ["1", "2", "3", "4", "translation", "reflection", "dilation", "rotation"]
 
 transformation_input = validate_transformation(transformation_input, valid_transformations)
 
@@ -287,6 +288,52 @@ Where do you want to dilate your point in respect from?\n
         X_LIST_DILATE = [(eval(scale_factor) * (x-eval(h)) + eval(h)) for x in x_list]
         Y_LIST_DILATE = [(eval(scale_factor) * (y-eval(k)) + eval(k)) for y in y_list]
 
+# Rotations
+X_LIST_ROTATE = []
+Y_LIST_ROTATE = []
+
+ROTATE = False
+
+if "rotation" in transformation_input or "4" in transformation_input:
+
+    X_LIST_ROTATE = [x for x in x_list]
+    Y_LIST_ROTATE = [y for y in y_list]
+
+    ROTATE = True
+
+    rotation_input = input(
+"""
+How do you want to rotate your point?
+1. Clockwise
+2. Counterclockwise
+
+"""
+    ).lower()
+
+    degrees = input(
+"""
+How many degrees do you wish to rotate your point?
+"""
+    )
+
+    degrees = eval(degrees)
+
+    if "clockwise" in rotation_input or "1" in rotation_input:
+        
+        degrees = -1 * degrees
+        angle = math.radians(degrees)
+
+        X_LIST_ROTATE = [round(x*(math.cos(angle)) - y*(math.sin(angle)), 3) for x in x_list for y in y_list]
+        Y_LIST_ROTATE = [round(x*(math.sin(angle)) + y*(math.cos(angle)), 3) for x in x_list for y in y_list]
+
+    if "counterclockwise" in rotation_input or "2" in rotation_input:
+    
+        angle = math.radians(degrees)
+
+        X_LIST_ROTATE = [round(x*math.cos(angle) - y*math.sin(angle), 3) for x in x_list for y in y_list]
+        Y_LIST_ROTATE = [round(x*math.sin(angle) + y*math.cos(angle), 3) for x in x_list for y in y_list]
+
+
 
 # Make ordered pairs
 
@@ -322,4 +369,13 @@ if DILATE is True:
     print("Your points now are:")
 
     for i, o_p in enumerate(dilated_ordered_pair):
+        print(o_p)
+
+if ROTATE is True:
+    
+    rotated_ordered_pair =  [(x, y) for x,y in zip(X_LIST_ROTATE, Y_LIST_ROTATE)]
+
+    print("Your points now are:")
+
+    for i, o_p in enumerate(rotated_ordered_pair):
         print(o_p)

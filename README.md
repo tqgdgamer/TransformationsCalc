@@ -12,7 +12,7 @@
 | Translation | ✅ |
 | Reflection | 🛠️ |
 | Dilation | ✅ |
-| Rotation | ❌ |
+| Rotation | ✅ |
 
 ## Installation
 
