@@ -9,23 +9,74 @@ y_list_str = []
 
 def validate_reflection(user_input, valid_input):
 
-    patterny = r"y=([-]?(\d+|\d+\/\d+))$"
-    patternx = r"x=([-]?(\d+|\d+\/\d+))$"
+    patterny = r"y=([-]?(\d+|\d+\.\d+|\d\/\d+)$)"
+    patternx = r"x=([-]?(\d+|\d+\.\d+|\d\/\d+)$)"
 
     matchy = re.match(patterny, user_input)
     matchx = re.match(patternx, user_input)
+
+    # Slope Intercept Form - y=mx+b
+    matchline1 = re.match(r"y=([-]?(\d+|\d+\.\d+|\d\/\d+))x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?$", user_input)
+    matchline2 = re.match(r"y=[-]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?$", user_input) # -x scenario
+    matchline3 = re.match(r"y=x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?$", user_input) # x scenario
+
+    # Standard Form - ax+by=c
+    matchline4 = re.match(r"([-]?(\d+|\d+\.\d+|\d\/\d+))x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # main
+    matchline5 = re.match(r"[-]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # -x scenario
+    matchline6 = re.match(r"x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # x scenario
+    matchline7 = re.match(r"([-]?(\d+|\d+\.\d+|\d\/\d+))x[-]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # -y scenario
+    matchline8 = re.match(r"([-]?(\d+|\d+\.\d+|\d\/\d+))x[+]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # y scenario
+    matchline9 = re.match(r"x[+]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # x, y scenario
+    matchline10 = re.match(r"[-]x[+]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # -x, y scenario
+    matchline11 = re.match(r"x[-]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # x, -y scenario
+    matchline12 = re.match(r"[-]x[-]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", user_input) # -x, -y scenario
+
+    # Point Slope Form - y-y1=m(x-x1)
+    matchline13 = re.match(r"[(]?y(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?=([-]?(\d+|\d+\.\d+|\d\/\d+))[(]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]", user_input) # m is forced to be a value
+    matchline14 = re.match(r"[(]?y(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?=[(]?x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?", user_input) # slope is 1
+    matchline15 = re.match(r"[(]?y(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?=[-][(]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]", user_input) # slope is -1
 
     valid_input = ["1", "2","x-axis", "y-axis"]
 
     if matchy:
         return user_input
 
-    if matchx:
+    elif matchx:
         return user_input
+    
+    elif matchline1:
+        return user_input
+    elif matchline2:
+        return user_input
+    elif matchline3:
+        return user_input
+    elif matchline4:
+        return user_input
+    elif matchline5:
+        return user_input
+    elif matchline6:
+        return user_input
+    elif matchline7:
+        return user_input
+    elif matchline8:
+        return user_input
+    elif matchline9:
+        return user_input
+    elif matchline10:
+        return user_input
+    elif matchline11:
+        return user_input
+    elif matchline12:
+        return user_input
+    elif matchline13:
+        return user_input
+    elif matchline14:
+        return user_input
+    elif matchline15:
+        return user_input
+    else:
 
-    if not matchy and not matchx:
-
-        while user_input not in valid_input and not matchy and not matchx:
+        while user_input not in valid_input and not matchy and not matchx and not matchline1 and not matchline2 and not matchline3 and not matchline4 and not matchline5 and not matchline6 and not matchline7 and not matchline8 and not matchline9 and not matchline10 and not matchline11 and not matchline12 and not matchline13 and not matchline14 and not matchline15:
             print("\033[1mYour input is invalid. Please try again.\033[0m")
             user_input = input(
 """
@@ -47,8 +98,39 @@ What line do you want to reflect your point over?
             if matchy:
                 return user_input
 
-            if matchx:
+            elif matchx:
                 return user_input
+            
+            elif matchline1:
+                return user_input
+            elif matchline2:
+                return user_input
+            elif matchline3:
+                return user_input
+            elif matchline4:
+                return user_input
+            elif matchline5:
+                return user_input
+            elif matchline6:
+                return user_input
+            elif matchline7:
+                return user_input
+            elif matchline8:
+                return user_input
+            elif matchline9:
+                return user_input
+            elif matchline10:
+                return user_input
+            elif matchline11:
+                return user_input
+            elif matchline12:
+                return user_input
+            elif matchline13:
+                return user_input
+            elif matchline14:
+                return user_input
+            elif matchline15:
+                return user_input            
 
     return user_input
 
@@ -211,28 +293,159 @@ What line do you want to reflect your point over?
 
     reflection_line_input = validate_reflection(reflection_line_input, valid_input)
 
-    matchy = re.match(r"y=([-]?(\d+|\d+\/\d+))$", reflection_line_input)
-    matchx = re.match(r"x=([-]?(\d+|\d+\/\d+))$", reflection_line_input)
+    matchy = re.match(r"y=([-]?(\d+|\d+\.\d+|\d\/\d+)$)", reflection_line_input)
+    matchx = re.match(r"x=([-]?(\d+|\d+\.\d+|\d\/\d+)$)", reflection_line_input)
 
-    if "1" in reflection_line_input or "x-axis" in reflection_line_input:
+    # Slope Intercept Form - y=mx+b
+    matchline1 = re.match(r"y=([-]?(\d+|\d+\.\d+|\d\/\d+))x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?$", reflection_line_input)
+    matchline2 = re.match(r"y=[-]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?$", reflection_line_input) # -x scenario
+    matchline3 = re.match(r"y=x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?$", reflection_line_input) # x scenario
+
+    # Standard Form - ax+by=c
+    matchline4 = re.match(r"([-]?(\d+|\d+\.\d+|\d\/\d+))x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # main
+    matchline5 = re.match(r"[-]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # -x scenario
+    matchline6 = re.match(r"x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # x scenario
+    matchline7 = re.match(r"([-]?(\d+|\d+\.\d+|\d\/\d+))x[-]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # -y scenario
+    matchline8 = re.match(r"([-]?(\d+|\d+\.\d+|\d\/\d+))x[+]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # y scenario
+    matchline9 = re.match(r"x[+]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # x, y scenario
+    matchline10 = re.match(r"[-]x[+]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # -x, y scenario
+    matchline11 = re.match(r"x[-]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # x, -y scenario
+    matchline12 = re.match(r"[-]x[-]y=([-]?(\d+|\d+\.\d+|\d\/\d+))", reflection_line_input) # -x, -y scenario
+
+    # Point Slope Form - y-y1=m(x-x1)
+    matchline13 = re.match(r"[(]?y(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?=([-]?(\d+|\d+\.\d+|\d\/\d+))[(]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]", reflection_line_input) # m is forced to be a value
+    matchline14 = re.match(r"[(]?y(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?=[(]?x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?", reflection_line_input) # slope is 1
+    matchline15 = re.match(r"[(]?y(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]?=[-][(]x(([+]|[-])(\d+|\d+\.\d+|\d\/\d+))?[)]", reflection_line_input) # slope is -1
+
+    if "1" == reflection_line_input or "x-axis" == reflection_line_input:
         
         X_LIST_REFLECT = [round(x, 3) for x in x_list]
         Y_LIST_REFLECT = [round(-y, 3) for y in y_list]
 
-    if "2" in reflection_line_input or "y-axis" in reflection_line_input:
+    elif "2" == reflection_line_input or "y-axis" == reflection_line_input:
         
         X_LIST_REFLECT = [round(-x, 3) for x in x_list]
         Y_LIST_REFLECT = [round(y, 3) for y in y_list]
 
-    if matchy:
+    elif matchy:
 
         X_LIST_REFLECT = [round(x, 3) for x in x_list]
         Y_LIST_REFLECT = [round(-y + ( 2 * eval(matchy.group(1))), 3) for y in y_list]
 
-    if matchx:
+    elif matchx:
 
         X_LIST_REFLECT = [round(-x + ( 2 * eval(matchy.group(1))), 3) for x in x_list]
         Y_LIST_REFLECT = [round(y, 3) for y in x_list]
+    else:
+
+        slope = None
+        yint = None
+
+        if matchline1:
+            slope = eval(matchline1.group(1))
+            yint = matchline1.group(3)
+
+            if yint is None:
+                yint = 0
+            else:
+                yint = eval(yint)
+
+        elif matchline2:
+            slope = -1
+            yint = matchline2.group(1)
+            
+            if yint is None:
+                yint = 0
+            else:
+                yint = eval(yint)
+
+        elif matchline3:
+            slope = 1
+            yint = matchline3.group(1)
+
+            if yint is None:
+                yint = 0
+            else:
+                yint = eval(yint)
+
+        elif matchline4:
+            a = eval(matchline4.group(1))
+            b = eval(matchline4.group(3))
+            c = eval(matchline4.group(6))
+
+            slope = -a/b
+            yint = c/b
+
+        elif matchline5:
+            a = -1
+            b = eval(matchline5.group(1))
+            c = eval(matchline5.group(4))
+
+            slope = -a/b
+            yint = c/b
+
+        elif matchline6:
+            a = 1
+            b = eval(matchline6.group(1))
+            c = eval(matchline6.group(4))
+
+            slope = -a/b
+            yint = c/b
+
+        elif matchline7:
+            a = eval(matchline7.group(1))
+            b = -1
+            c = eval(matchline7.group(3))
+
+            slope = -a/b
+            yint = c/b
+
+        elif matchline8:
+            a = eval(matchline8.group(1))
+            b = 1
+            c = eval(matchline8.group(3))
+
+            slope = -a/b
+            yint = c/b
+
+        elif matchline9:
+
+            slope = -1
+            yint = eval(matchline9.group(1))
+
+        elif matchline10:
+
+            slope = 1
+            yint = eval(matchline10.group(1))
+
+        elif matchline11:
+
+            slope = 1
+            yint = -1*eval(matchline11.group(1))
+
+        elif matchline12:
+
+            slope = -1
+            yint = -1*eval(matchline12.group(1))
+
+        elif matchline13:
+            y1 = matchline13.group(1)
+            slope = eval(matchline13.group(4))
+            x1 = matchline13.group(6)
+
+            if y1 is None:
+                y1 = 0
+            else:
+                y1 = eval(y1)
+            if x1 is None:
+                x1 = 0
+            else:
+                x1 = eval(x1)
+
+            yint = (slope*x1)-y1
+
+        X_LIST_REFLECT = [round((x-((2*slope*(slope*x-y+yint))/((slope**2)+1))), 3) for x,y in zip(x_list,y_list)]
+        Y_LIST_REFLECT = [round((y+((2*(slope*x-y+yint))/((slope**2)+1))), 3) for x,y in zip(x_list,y_list)]
 
 # Dilations
 X_LIST_DILATE = []
@@ -323,15 +536,15 @@ How many degrees do you wish to rotate your point?
         degrees = -1 * degrees
         angle = math.radians(degrees)
 
-        X_LIST_ROTATE = [round(x*(math.cos(angle)) - y*(math.sin(angle)), 3) for x in x_list for y in y_list]
-        Y_LIST_ROTATE = [round(x*(math.sin(angle)) + y*(math.cos(angle)), 3) for x in x_list for y in y_list]
+        X_LIST_ROTATE = [round(x*(math.cos(angle)) - y*(math.sin(angle)), 3) for x,y in zip(x_list,y_list)]
+        Y_LIST_ROTATE = [round(x*(math.sin(angle)) + y*(math.cos(angle)), 3) for x,y in zip(x_list,y_list)]
 
     if "counterclockwise" in rotation_input or "2" in rotation_input:
     
         angle = math.radians(degrees)
 
-        X_LIST_ROTATE = [round(x*math.cos(angle) - y*math.sin(angle), 3) for x in x_list for y in y_list]
-        Y_LIST_ROTATE = [round(x*math.sin(angle) + y*math.cos(angle), 3) for x in x_list for y in y_list]
+        X_LIST_ROTATE = [round(x*math.cos(angle) - y*math.sin(angle), 3) for x,y in zip(x_list,y_list)]
+        Y_LIST_ROTATE = [round(x*math.sin(angle) + y*math.cos(angle), 3) for x,y in zip(x_list,y_list)]
 
 
 

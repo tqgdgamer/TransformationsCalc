@@ -10,7 +10,7 @@
 | Multiple Points | ✅ |
 | **Transformations** | - |
 | Translation | ✅ |
-| Reflection | 🛠️ |
+| Reflection | ✅ |
 | Dilation | ✅ |
 | Rotation | ✅ |
 
